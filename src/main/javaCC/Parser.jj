@@ -1,0 +1,69 @@
+/**
+*  Parser.jj
+*
+* La classe Parser est responsable de l'analyse syntaxique d'une chaîne d'entrée donnée et du retour
+* d'une formule CTL.
+*/
+PARSER_BEGIN(Parser)
+
+import java.io.InputStream;
+public class Parser {
+    public static void main(String[] args) {
+        try {
+            Parser parseur = new Parser(System.in);
+            parseur.mainNT();
+            System.out.println("CTL formula accepted !");
+        } catch (TokenMgrError e) {
+            System.out.println("The label must be in miniscule !");
+        } catch (ParseException e) {
+            System.out.println("Error - This is not a CTL formula !");
+        }
+    }
+}
+PARSER_END(Parser)
+
+SKIP :
+{ " " | "\t" }
+
+TOKEN :
+{
+      < LABEL: ["a"-"z"] (["a"-"z"])* (["0"-"9"])* >
+    | < EOL: "\n" >
+}
+
+void mainNT () :
+{}
+{ CTL_fomula () <EOL> }
+
+void CTL_fomula () :
+{}
+{
+      proposition()
+    | "AX" proposition()
+    | "EX" proposition()
+    | "AF" proposition()
+    | "EF" proposition()
+    | "AG" proposition()
+    | "EG" proposition()
+    | "A" "(" proposition() "U" proposition() ")"
+    | "E" "(" proposition() "U" proposition() ")"
+}
+
+void proposition () :
+{}
+{
+    term () (
+          "/\\" term()
+        | "\\/" term()
+        | "=>" term()
+    )*
+}
+
+void term () :
+{}
+{
+      "(" CTL_fomula() ")"
+    | "~" term()
+    | "TRUE"
+    | <LABEL>
+}
