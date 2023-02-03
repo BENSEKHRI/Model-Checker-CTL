@@ -6,7 +6,9 @@
 */
 PARSER_BEGIN(Parser)
 
+import CTL_formula.*;
 import java.io.InputStream;
+
 public class Parser {
     public static void main(String[] args) {
         try {
@@ -14,11 +16,12 @@ public class Parser {
             parseur.mainNT();
             System.out.println("CTL formula accepted !");
         } catch (TokenMgrError e) {
-            System.out.println("The label must be in miniscule !");
+            System.out.println("Error - The label must be in miniscule !");
         } catch (ParseException e) {
             System.out.println("Error - This is not a CTL formula !");
         }
     }
+}}
 }
 PARSER_END(Parser)
 
@@ -31,39 +34,50 @@ TOKEN :
     | < EOL: "\n" >
 }
 
-void mainNT () :
-{}
-{ CTL_fomula () <EOL> }
-
-void CTL_fomula () :
-{}
+CTL_Formula mainNT () :
 {
-      proposition()
-    | "AX" proposition()
-    | "EX" proposition()
-    | "AF" proposition()
-    | "EF" proposition()
-    | "AG" proposition()
-    | "EG" proposition()
-    | "A" "(" proposition() "U" proposition() ")"
-    | "E" "(" proposition() "U" proposition() ")"
+    CTL_Formula f;
+}
+{
+      f=CTL_fomula () <EOL> { return f; }
 }
 
-void proposition () :
-{}
+CTL_Formula CTL_fomula () :
 {
-    term () (
-          "/\\" term()
-        | "\\/" term()
-        | "=>" term()
+    CTL_Formula f1, f2;
+}
+{
+      f1=proposition()      { return f1; }
+    | "AX" f1=proposition() { return new AX(f1); }
+    | "EX" f1=proposition() { return new EX(f1); }
+    | "AF" f1=proposition() { return new AU(new Atomic(TRUE), f1); }
+    | "EF" f1=proposition() { return new EU(new Atomic(TRUE), f1); }
+    | "AG" f1=proposition() { return new NOT(new AU(new Atomic(TRUE), f1)); }
+    | "EG" f1=proposition() { return new NOT(new EU(new Atomic(TRUE), f1)); }
+    | "A" "(" f1=proposition() "U" f2=proposition() ")" { return new AU(f1, f2); }
+    | "E" "(" f1=proposition() "U" f2=proposition() ")" { return new EU(f1, f2); }
+}
+
+CTL_fomula proposition () :
+{
+    CTL_Formula f1, f2;
+}
+{
+    f1=term () (
+          "/\\" f2=term()   { return new AND(f1, f2); }
+        | "\\/" f2=term()   { return new OR(f1, f2); }
+        | "=>" f2=term()    { return new AND(f1, new NOT(f2)); }
     )*
 }
 
-void term () :
-{}
+CTL_fomula term () :
 {
-      "(" CTL_fomula() ")"
-    | "~" term()
-    | "TRUE"
-    | <LABEL>
+    CTL_Formula f;
+    Token t;
+}
+{
+      "(" f=CTL_fomula() ")"  { return f; }
+    | "~" f=term()            { return new NOT(f); }
+    | "TRUE"                  { return new Atomic(TRUE); }
+    | t=<LABEL>               { return new Atomic(t.image); }
 }
