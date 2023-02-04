@@ -1,5 +1,7 @@
 package CTL_formula;
 
+import Kripke_structure.KripkeStr;
+
 public class EX extends OneArg {
     public EX(CTL_Formula f) {
         super(f);
@@ -7,6 +9,11 @@ public class EX extends OneArg {
 
     @Override
     public String toString() {
-        return "EX{}";
+        return "(E X" + super.getF() + ")";
+    }
+
+    @Override
+    public void marking (KripkeStr k) {
+
     }
 }

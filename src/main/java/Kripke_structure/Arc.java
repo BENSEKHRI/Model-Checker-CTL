@@ -2,11 +2,11 @@ package Kripke_structure;
 
 import java.util.Objects;
 
-public class Transition {
+public class Arc {
     private State src;
     private State dest;
 
-    public Transition(State src, State dest) {
+    public Arc(State src, State dest) {
         this.src = src;
         this.dest = dest;
     }
@@ -30,7 +30,7 @@ public class Transition {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Transition that)) return false;
+        if (!(o instanceof Arc that)) return false;
         return getSrc().equals(that.getSrc()) && getDest().equals(that.getDest());
     }
 

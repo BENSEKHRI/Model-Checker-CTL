@@ -1,5 +1,8 @@
 package CTL_formula;
 
+import Kripke_structure.KripkeStr;
+import Kripke_structure.State;
+
 import java.util.Objects;
 
 public class Atomic extends CTL_Formula {
@@ -34,5 +37,12 @@ public class Atomic extends CTL_Formula {
         return "Atomic{" +
                 "label='" + label + '\'' +
                 '}';
+    }
+
+    @Override
+    public void marking (KripkeStr k) {
+        for (State s: k.getStates()) {
+            s.setCheckCTL(s.getLabels().contains(this));
+        }
     }
 }

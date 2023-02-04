@@ -4,18 +4,18 @@ import java.util.List;
 
 public class KripkeStr {
     private List<State> states;
-    private List<Transition> transitions;
+    private List<Arc> arcs;
 
-    public KripkeStr(List<State> states, List<Transition> transitions) {
+    public KripkeStr(List<State> states, List<Arc> arcs) {
         this.states = states;
-        this.transitions = transitions;
+        this.arcs = arcs;
     }
 
     public List<State> getStates() {
         return states;
     }
 
-    public List<Transition> getTransitions() {
-        return transitions;
+    public List<Arc> getTransitions() {
+        return arcs;
     }
 }

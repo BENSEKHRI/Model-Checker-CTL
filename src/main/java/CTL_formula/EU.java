@@ -1,5 +1,7 @@
 package CTL_formula;
 
+import Kripke_structure.KripkeStr;
+
 public class EU extends TwoArg {
     public EU(CTL_Formula f1, CTL_Formula f2) {
         super(f1, f2);
@@ -7,6 +9,11 @@ public class EU extends TwoArg {
 
     @Override
     public String toString() {
-        return "EU{}";
+        return "(E " + super.getF1() + " U " + super.getF2();
+    }
+
+    @Override
+    public void marking (KripkeStr k) {
+
     }
 }

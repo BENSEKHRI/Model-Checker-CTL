@@ -21,7 +21,6 @@ public class Parser {
             System.out.println("Error - This is not a CTL formula !");
         }
     }
-}}
 }
 PARSER_END(Parser)
 
@@ -48,14 +47,14 @@ CTL_Formula CTL_fomula () :
 }
 {
       f1=proposition()      { return f1; }
-    | "AX" f1=proposition() { return new AX(f1); }
     | "EX" f1=proposition() { return new EX(f1); }
-    | "AF" f1=proposition() { return new AU(new Atomic(TRUE), f1); }
-    | "EF" f1=proposition() { return new EU(new Atomic(TRUE), f1); }
-    | "AG" f1=proposition() { return new NOT(new AU(new Atomic(TRUE), f1)); }
-    | "EG" f1=proposition() { return new NOT(new EU(new Atomic(TRUE), f1)); }
-    | "A" "(" f1=proposition() "U" f2=proposition() ")" { return new AU(f1, f2); }
+    | "AX" f1=proposition() { return new NOT(new EX(new NOT(f1))); }
+    | "EF" f1=proposition() { return new EU(new Atomic("TRUE"), f1); }
+    | "AF" f1=proposition() { return new AU(new Atomic("TRUE"), f1); }
+    | "EG" f1=proposition() { return new NOT(new AU(new Atomic("TRUE"), f1)); }
+    | "AG" f1=proposition() { return new NOT(new EU(new Atomic("TRUE"), f1)); }
     | "E" "(" f1=proposition() "U" f2=proposition() ")" { return new EU(f1, f2); }
+    | "A" "(" f1=proposition() "U" f2=proposition() ")" { return new AU(f1, f2); }
 }
 
 CTL_fomula proposition () :
@@ -65,7 +64,7 @@ CTL_fomula proposition () :
 {
     f1=term () (
           "/\\" f2=term()   { return new AND(f1, f2); }
-        | "\\/" f2=term()   { return new OR(f1, f2); }
+        | "\\/" f2=term()   { return new NOT(new AND(new NOT(f1), new NOT(f2))); }
         | "=>" f2=term()    { return new AND(f1, new NOT(f2)); }
     )*
 }
@@ -78,6 +77,6 @@ CTL_fomula term () :
 {
       "(" f=CTL_fomula() ")"  { return f; }
     | "~" f=term()            { return new NOT(f); }
-    | "TRUE"                  { return new Atomic(TRUE); }
+    | "TRUE"                  { return new Atomic("TRUE"); }
     | t=<LABEL>               { return new Atomic(t.image); }
 }

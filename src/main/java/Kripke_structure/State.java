@@ -11,6 +11,8 @@ public class State {
     private Integer index;
     private String nom;
     private Set<Atomic> labels;
+    private boolean isInitial;
+    private boolean checkCTL;
     private List<State> destinationStates;
     private List<State> sourceStates;
 
@@ -46,6 +48,22 @@ public class State {
 
     public void setLabels(Set<Atomic> labels) {
         this.labels = labels;
+    }
+
+    public boolean isInitial() {
+        return isInitial;
+    }
+
+    public void setInitial(boolean initial) {
+        isInitial = initial;
+    }
+
+    public boolean isCheckCTL() {
+        return checkCTL;
+    }
+
+    public void setCheckCTL(boolean marked) {
+        checkCTL = marked;
     }
 
     public List<State> getDestinationStates() {
