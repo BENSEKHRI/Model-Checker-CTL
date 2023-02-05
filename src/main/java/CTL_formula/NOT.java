@@ -14,10 +14,10 @@ public class NOT extends OneArg {
     }
 
     @Override
-    public void marking(KripkeStr k) {
-        this.getF().marking(k);
+    public void marking(KripkeStr k, int index) {
+        this.getF().marking(k, index);
         for (State s : k.getStates()) {
-            s.setCheckCTL(!s.isCheckCTL());
+            s.setCheckCTLIndex(!s.getCheckCTLIndex(index), index);
         }
     }
 }

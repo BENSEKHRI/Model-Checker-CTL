@@ -13,7 +13,7 @@ public class EX extends OneArg {
     }
 
     @Override
-    public void marking (KripkeStr k) {
+    public void marking (KripkeStr k, int index) {
 
     }
 }

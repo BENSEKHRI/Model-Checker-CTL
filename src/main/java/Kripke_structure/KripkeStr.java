@@ -18,4 +18,12 @@ public class KripkeStr {
     public List<Arc> getTransitions() {
         return arcs;
     }
+
+    @Override
+    public String toString() {
+        return "KripkeStr{" +
+                "states=" + states +
+                ", arcs=" + arcs +
+                '}';
+    }
 }

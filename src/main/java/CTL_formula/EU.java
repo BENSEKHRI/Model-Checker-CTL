@@ -13,7 +13,7 @@ public class EU extends TwoArg {
     }
 
     @Override
-    public void marking (KripkeStr k) {
+    public void marking (KripkeStr k, int index) {
 
     }
 }

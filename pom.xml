@@ -13,4 +13,12 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>javacc</groupId>
+            <artifactId>javacc</artifactId>
+            <version>5.0</version>
+        </dependency>
+    </dependencies>
+
 </project>

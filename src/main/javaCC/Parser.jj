@@ -7,7 +7,6 @@
 PARSER_BEGIN(Parser)
 
 import CTL_formula.*;
-import java.io.InputStream;
 
 public class Parser {
     public static void main(String[] args) {

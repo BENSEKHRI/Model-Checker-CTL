@@ -34,15 +34,13 @@ public class Atomic extends CTL_Formula {
 
     @Override
     public String toString() {
-        return "Atomic{" +
-                "label='" + label + '\'' +
-                '}';
+        return label;
     }
 
     @Override
-    public void marking (KripkeStr k) {
+    public void marking (KripkeStr k, int index) {
         for (State s: k.getStates()) {
-            s.setCheckCTL(s.getLabels().contains(this));
+            s.setCheckCTLIndex(s.getLabels().contains(this), index);
         }
     }
 }

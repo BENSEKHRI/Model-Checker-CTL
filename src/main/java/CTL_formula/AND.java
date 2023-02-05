@@ -14,16 +14,11 @@ public class AND extends TwoArg {
     }
 
     @Override
-    public void marking(KripkeStr k) {
-        super.getF1().marking(k);
-        KripkeStr  tmp = k;
-        super.getF2().marking(k);
+    public void marking(KripkeStr k, int index) {
+        super.getF1().marking(k, 0);
+        super.getF2().marking(k, 1);
         for (State s : k.getStates()) {
-            for (State sTmp : tmp.getStates()) {
-                if (s.getIndex() == sTmp.getIndex()) {
-                    s.setCheckCTL(s.isCheckCTL() && sTmp.isCheckCTL());
-                }
-            }
+            s.setCheckCTLIndex(s.getCheckCTLIndex(0) && s.getCheckCTLIndex(1), index);
         }
     }
 }

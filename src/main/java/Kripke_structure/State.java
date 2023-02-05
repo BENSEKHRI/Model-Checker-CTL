@@ -2,28 +2,26 @@ package Kripke_structure;
 
 import CTL_formula.Atomic;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class State {
     private Integer index;
     private String nom;
     private Set<Atomic> labels;
     private boolean isInitial;
-    private boolean checkCTL;
-    private List<State> destinationStates;
-    private List<State> sourceStates;
+    private List<Boolean> checkCTL = new ArrayList<Boolean>();
+    private List<State> destinationStates = new ArrayList<State>();
+    private List<State> sourceStates = new ArrayList<State>();
 
 
     public State() {
     }
 
-    public State(Integer index, String nom, Set<Atomic> labels) {
+    public State(Integer index, String nom, Set<Atomic> labels, boolean isInitial) {
         this.index = index;
         this.nom = nom;
-        this.labels = new HashSet<>(labels);
+        this.labels = labels;
+        this.isInitial = isInitial;
     }
 
     public Integer getIndex() {
@@ -58,12 +56,12 @@ public class State {
         isInitial = initial;
     }
 
-    public boolean isCheckCTL() {
-        return checkCTL;
+    public boolean getCheckCTLIndex(int index) {
+        return this.checkCTL.get(index);
     }
 
-    public void setCheckCTL(boolean marked) {
-        checkCTL = marked;
+    public void setCheckCTLIndex(Boolean checkCTL, int index) {
+        this.checkCTL.set(index, checkCTL);
     }
 
     public List<State> getDestinationStates() {
