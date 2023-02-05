@@ -65,7 +65,7 @@ CTL_fomula proposition () :
           "/\\" f2=term()   { return new AND(f1, f2); }
         | "\\/" f2=term()   { return new NOT(new AND(new NOT(f1), new NOT(f2))); }
         | "=>" f2=term()    { return new AND(f1, new NOT(f2)); }
-    )*
+    )* { return f1; }
 }
 
 CTL_fomula term () :

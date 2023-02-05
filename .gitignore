@@ -1,6 +1,2 @@
 .idea
 target
-/src/main/java/javaCC/*
-!/src/main/java/javaCC/Parser.jj
-/src/main/java/javaCC/*
-!/src/main/java/javaCC/Parser.jj

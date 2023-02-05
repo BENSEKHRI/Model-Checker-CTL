@@ -31,15 +31,16 @@ public class Application {
 
         System.out.println(k);
 
-        // Initialiser les formules avec javaCC
 
         Parser parser = new Parser(System.in);
         while (true) {
             try {
+                // Initialiser les formules avec javaCC
                 CTL_Formula f = parser.mainNT();
 
                 System.out.println(f);
 
+                // Test des algos de marquage
                 f.marking(k, 0);
 
                 System.out.println("The states that verify the CTL formula are: ");
@@ -58,9 +59,5 @@ public class Application {
                 return;
             }
         }
-
-
-        // Test des algos
-
     }
 }
