@@ -23,12 +23,8 @@ public class AND extends TwoArg {
         List<Boolean> left = this.getF1().marking(k);
         List<Boolean> right = this.getF2().marking(k);
 
-        int index = 0;
-
         for (State s : k.getStates()) {
-            s.setCheckCTL(left.get(index) && right.get(index));
-            res.add(s.isCheckCTL());
-            index++;
+            res.add(left.get(s.getIndex()) && right.get(s.getIndex()));
         }
 
         return res;

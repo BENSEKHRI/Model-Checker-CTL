@@ -37,10 +37,10 @@ CTL_Formula mainNT () :
     CTL_Formula f;
 }
 {
-      f=CTL_fomula () <EOL> { return f; }
+      f=ctl () <EOL> { return f; }
 }
 
-CTL_Formula CTL_fomula () :
+CTL_Formula ctl () :
 {
     CTL_Formula f1, f2;
 }
@@ -56,7 +56,7 @@ CTL_Formula CTL_fomula () :
     | "A" "(" f1=proposition() "U" f2=proposition() ")" { return new AU(f1, f2); }
 }
 
-CTL_fomula proposition () :
+CTL_Formula proposition () :
 {
     CTL_Formula f1, f2;
 }
@@ -64,18 +64,20 @@ CTL_fomula proposition () :
     f1=term () (
           "/\\" f2=term()   { return new AND(f1, f2); }
         | "\\/" f2=term()   { return new NOT(new AND(new NOT(f1), new NOT(f2))); }
-        | "=>" f2=term()    { return new AND(f1, new NOT(f2)); }
+        | "=>" f2=term()    { return new NOT(new AND(f1, new NOT(f2))); }
     )* { return f1; }
 }
 
-CTL_fomula term () :
+CTL_Formula term () :
 {
     CTL_Formula f;
     Token t;
 }
 {
-      "(" f=CTL_fomula() ")"  { return f; }
+      "(" f=ctl() ")"         { return f; }
     | "~" f=term()            { return new NOT(f); }
     | "TRUE"                  { return new Atomic("TRUE"); }
+    | "FALSE"                 { return new NOT (new Atomic("TRUE")); }
     | t=<LABEL>               { return new Atomic(t.image); }
+    | "EXIT"                  { return new Atomic("EXIT"); }
 }

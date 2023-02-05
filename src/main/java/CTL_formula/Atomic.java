@@ -42,10 +42,22 @@ public class Atomic extends CTL_Formula {
     @Override
     public List<Boolean> marking(KripkeStr k) {
         List<Boolean> res = new ArrayList<>();
-        for (State s : k.getStates()) {
-            s.setCheckCTL(s.getLabels().contains(this));
-            res.add(s.isCheckCTL());
+
+        if (this.label.equals("TRUE")) {
+            for (State s : k.getStates()) {
+                res.add(true);
+            }
+        } else {
+            for (State s : k.getStates()) {
+                res.add(s.getLabels().contains(this));
+            }
         }
+
         return res;
     }
+
+    public boolean exit() {
+        return this.label.equals("EXIT");
+    }
+
 }

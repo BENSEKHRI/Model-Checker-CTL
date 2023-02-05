@@ -33,6 +33,7 @@ public class Application {
         k.setSrcDestState();
 
         Parser parser = new Parser(System.in);
+
         while (true) {
             try {
                 // Initialiser les formules avec javaCC
@@ -41,12 +42,12 @@ public class Application {
                 System.out.println(f);
 
                 // Test des algos de marquage
-                f.marking(k);
+                List<Boolean> checkCTL = f.marking(k);
 
                 System.out.println("The states that verify the CTL formula are: ");
 
                 for (State s : k.getStates()) {
-                    if (s.isCheckCTL()) {
+                    if (checkCTL.get(s.getIndex())) {
                         System.out.println(" - " + s + " - ");
                     }
                 }

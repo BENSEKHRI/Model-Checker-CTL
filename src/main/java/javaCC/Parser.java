@@ -16,19 +16,21 @@ public class Parser implements ParserConstants {
 
   static final public CTL_Formula mainNT() throws ParseException {
     CTL_Formula f;
-    f = CTL_fomula();
+    f = ctl();
     jj_consume_token(EOL);
-                              {if (true) return f;}
+                       {if (true) return f;}
     throw new Error("Missing return statement in function");
   }
 
-  static final public CTL_Formula CTL_fomula() throws ParseException {
+  static final public CTL_Formula ctl() throws ParseException {
     CTL_Formula f1, f2;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case LABEL:
     case 12:
     case 19:
     case 20:
+    case 21:
+    case 22:
       f1 = proposition();
                               {if (true) return f1;}
       break;
@@ -117,7 +119,7 @@ public class Parser implements ParserConstants {
       case 18:
         jj_consume_token(18);
         f2 = term();
-                              {if (true) return new AND(f1, new NOT(f2));}
+                              {if (true) return new NOT(new AND(f1, new NOT(f2)));}
         break;
       default:
         jj_la1[2] = jj_gen;
@@ -135,7 +137,7 @@ public class Parser implements ParserConstants {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case 12:
       jj_consume_token(12);
-      f = CTL_fomula();
+      f = ctl();
       jj_consume_token(14);
                                 {if (true) return f;}
       break;
@@ -148,9 +150,17 @@ public class Parser implements ParserConstants {
       jj_consume_token(20);
                                 {if (true) return new Atomic("TRUE");}
       break;
+    case 21:
+      jj_consume_token(21);
+                                {if (true) return new NOT (new Atomic("TRUE"));}
+      break;
     case LABEL:
       t = jj_consume_token(LABEL);
                                 {if (true) return new Atomic(t.image);}
+      break;
+    case 22:
+      jj_consume_token(22);
+                                {if (true) return new Atomic("EXIT");}
       break;
     default:
       jj_la1[3] = jj_gen;
@@ -176,7 +186,7 @@ public class Parser implements ParserConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x189fe8,0x70000,0x70000,0x181008,};
+      jj_la1_0 = new int[] {0x789fe8,0x70000,0x70000,0x781008,};
    }
 
   /** Constructor with InputStream. */
@@ -314,7 +324,7 @@ public class Parser implements ParserConstants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[21];
+    boolean[] la1tokens = new boolean[23];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -328,7 +338,7 @@ public class Parser implements ParserConstants {
         }
       }
     }
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < 23; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

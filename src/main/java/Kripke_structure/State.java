@@ -9,7 +9,6 @@ public class State {
     private String nom;
     private Set<Atomic> labels;
     private boolean isInitial;
-    private boolean checkCTL;
     private List<State> successors = new ArrayList<State>();
     private List<State> predecessors = new ArrayList<State>();
 
@@ -22,7 +21,6 @@ public class State {
         this.nom = nom;
         this.labels = labels;
         this.isInitial = isInitial;
-        this.checkCTL = false;
     }
 
     public Integer getIndex() {
@@ -55,14 +53,6 @@ public class State {
 
     public void setInitial(boolean initial) {
         isInitial = initial;
-    }
-
-    public boolean isCheckCTL() {
-        return checkCTL;
-    }
-
-    public void setCheckCTL(boolean checkCTL) {
-        this.checkCTL = checkCTL;
     }
 
     public List<State> getSuccessors() {

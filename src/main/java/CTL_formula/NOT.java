@@ -19,11 +19,13 @@ public class NOT extends OneArg {
     @Override
     public List<Boolean> marking(KripkeStr k) {
         List<Boolean> res = new ArrayList<>();
-        this.getF().marking(k);
+
+        List<Boolean> resF = this.getF().marking(k);
+
         for (State s : k.getStates()) {
-            s.setCheckCTL(!s.isCheckCTL());
-            res.add(s.isCheckCTL());
+            res.add(!resF.get(s.getIndex()));
         }
+
         return res;
     }
 }

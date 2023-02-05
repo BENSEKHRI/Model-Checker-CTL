@@ -39,6 +39,8 @@ public interface ParserConstants {
     "\"=>\"",
     "\"~\"",
     "\"TRUE\"",
+    "\"FALSE\"",
+    "\"EXIT\"",
   };
 
 }
