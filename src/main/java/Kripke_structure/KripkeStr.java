@@ -11,6 +11,16 @@ public class KripkeStr {
         this.arcs = arcs;
     }
 
+    public void setSrcDestState() {
+        for (Arc arc : arcs) {
+            State src = arc.getSrc();
+            State dest = arc.getDest();
+
+            states.get(src.getIndex()).setSuccessors(dest);
+            states.get(dest.getIndex()).setPredecessors(src);
+        }
+    }
+
     public List<State> getStates() {
         return states;
     }

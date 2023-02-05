@@ -41,6 +41,6 @@ public class Arc {
 
     @Override
     public String toString() {
-        return src.getNom() + "---->" + dest.getNom();
+        return src.getNom() + " --> " + dest.getNom();
     }
 }

@@ -25,25 +25,41 @@ public class EX extends OneArg {
         System.out.println("RES F");
         System.out.println(resF);
 
-
         for (State s : k.getStates()) {
-            s.setCheckCTL(false);
+            res.add(false);
         }
 
         for (State s : k.getStates()) {
-            for (State q : s.getDestinationStates()) {
+            System.out.println(s.isCheckCTL());
+        }
+
+        for (State s : k.getStates()) {
+            System.out.println(s.getSuccessors() + "\n\n");
+            for (State q : s.getSuccessors()) {
                 if (q.isCheckCTL() && resF.get(q.getIndex())) {
                     s.setCheckCTL(true);
-                    res.add(true);
+                    res.set(s.getIndex(), true);
+                } else {
+                    s.setCheckCTL(false);
                 }
             }
 
-            System.out.println(s + "--" + s.isCheckCTL());
+            System.out.println(s + " - " + s.isCheckCTL());
         }
 
-        System.out.println("Marquage");
+        int i = 0;
+        for (State s : k.getStates()) {
+
+        }
+
+
+
+        for (State s : k.getStates()) {
+            System.out.println(s.isCheckCTL());
+        }
 
         System.out.println(res);
+
 
         return res;
     }

@@ -17,20 +17,20 @@ public class Application {
         Atomic a = new Atomic("a");
         Atomic b = new Atomic("b");
 
-        State s0 = new State(1, "s0", Set.of(a, b), true);
+        State s0 = new State(0, "s0", Set.of(a, b), true);
         State s1 = new State(1, "s1", Set.of(a), false);
-        State s2 = new State(1, "s2", Set.of(b), false);
-        State s3 = new State(1, "s3", Set.of(a, b), false);
+        State s2 = new State(2, "s2", Set.of(b), false);
+        State s3 = new State(3, "s3", Set.of(a, b), false);
 
         Arc a0 = new Arc(s0, s1);
         Arc a1 = new Arc(s1, s2);
         Arc a2 = new Arc(s2, s3);
         Arc a3 = new Arc(s3, s0);
+        Arc a4 = new Arc(s0, s2);
 
-        KripkeStr k = new KripkeStr(List.of(s0, s1, s2, s3), List.of(a0, a1, a2, a3));
+        KripkeStr k = new KripkeStr(List.of(s0, s1, s2, s3), List.of(a0, a1, a2, a3, a4));
 
-        System.out.println(k);
-
+        k.setSrcDestState();
 
         Parser parser = new Parser(System.in);
         while (true) {
@@ -47,9 +47,11 @@ public class Application {
 
                 for (State s : k.getStates()) {
                     if (s.isCheckCTL()) {
-                        System.out.println(s + "\n");
+                        System.out.println(" - " + s + " - ");
                     }
                 }
+
+                System.out.println("----------");
 
             } catch (TokenMgrError e) {
                 System.out.println("Error - The label must be in miniscule !");
