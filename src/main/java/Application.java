@@ -41,12 +41,12 @@ public class Application {
                 System.out.println(f);
 
                 // Test des algos de marquage
-                f.marking(k, 0);
+                f.marking(k);
 
                 System.out.println("The states that verify the CTL formula are: ");
 
                 for (State s : k.getStates()) {
-                    if (s.getCheckCTLIndex(0)) {
+                    if (s.isCheckCTL()) {
                         System.out.println(s + "\n");
                     }
                 }

@@ -3,6 +3,8 @@ package CTL_formula;
 import Kripke_structure.KripkeStr;
 import Kripke_structure.State;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Atomic extends CTL_Formula {
@@ -38,9 +40,12 @@ public class Atomic extends CTL_Formula {
     }
 
     @Override
-    public void marking (KripkeStr k, int index) {
-        for (State s: k.getStates()) {
-            s.setCheckCTLIndex(s.getLabels().contains(this), index);
+    public List<Boolean> marking(KripkeStr k) {
+        List<Boolean> res = new ArrayList<>();
+        for (State s : k.getStates()) {
+            s.setCheckCTL(s.getLabels().contains(this));
+            res.add(s.isCheckCTL());
         }
+        return res;
     }
 }

@@ -9,7 +9,7 @@ public class State {
     private String nom;
     private Set<Atomic> labels;
     private boolean isInitial;
-    private List<Boolean> checkCTL = new ArrayList<Boolean>();
+    private boolean checkCTL;
     private List<State> destinationStates = new ArrayList<State>();
     private List<State> sourceStates = new ArrayList<State>();
 
@@ -22,6 +22,7 @@ public class State {
         this.nom = nom;
         this.labels = labels;
         this.isInitial = isInitial;
+        this.checkCTL = false;
     }
 
     public Integer getIndex() {
@@ -56,12 +57,12 @@ public class State {
         isInitial = initial;
     }
 
-    public boolean getCheckCTLIndex(int index) {
-        return this.checkCTL.get(index);
+    public boolean isCheckCTL() {
+        return checkCTL;
     }
 
-    public void setCheckCTLIndex(Boolean checkCTL, int index) {
-        this.checkCTL.set(index, checkCTL);
+    public void setCheckCTL(boolean checkCTL) {
+        this.checkCTL = checkCTL;
     }
 
     public List<State> getDestinationStates() {

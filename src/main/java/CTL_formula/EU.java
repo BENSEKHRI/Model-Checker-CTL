@@ -2,6 +2,8 @@ package CTL_formula;
 
 import Kripke_structure.KripkeStr;
 
+import java.util.List;
+
 public class EU extends TwoArg {
     public EU(CTL_Formula f1, CTL_Formula f2) {
         super(f1, f2);
@@ -13,7 +15,7 @@ public class EU extends TwoArg {
     }
 
     @Override
-    public void marking (KripkeStr k, int index) {
-
+    public List<Boolean> marking (KripkeStr k) {
+        return null;
     }
 }
