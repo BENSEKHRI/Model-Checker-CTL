@@ -1,5 +1,6 @@
 package Kripke_structure;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class KripkeStr {

@@ -1,0 +1,43 @@
+{
+  "places": [
+    {
+      "index": 1,
+      "nom": "s1",
+      "isInitial": false,
+      "labels": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "index": 2,
+      "nom": "s2",
+      "isInitial": false,
+      "labels": [
+        "a"
+      ]
+    },
+    {
+      "index": 3,
+      "nom": "s3",
+      "isInitial": false,
+      "labels": [
+        "b"
+      ]
+    },
+    {
+      "index": 4,
+      "nom": "s4",
+      "isInitial": false,
+      "labels": [
+        "a",
+        "b"
+      ]
+    }
+  ],
+	"arcs":
+	[
+		[1,2] , [1,3],[2,3] ,[3,4], [4,1]
+	]
+
+}

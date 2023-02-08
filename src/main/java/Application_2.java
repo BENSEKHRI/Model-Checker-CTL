@@ -7,35 +7,11 @@ import javaCC.ParseException;
 import javaCC.Parser;
 import javaCC.TokenMgrError;
 
-import java.io.*;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
-import com.google.gson.Gson;
-
-import java.io.IOException;
-
-public class Application {
+public class Application_2 {
     public static void main(String[] args) {
-
-        Gson gson = new Gson();
-
-        System.out.println("Lecture du Data.json...");
-        try (FileReader reader = new FileReader(Path.of(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("Data.json")).toURI()).toFile())) {
-            System.out.println("Création de la strucutre de Kripke en cours...");
-            KripkeStr k =  gson.fromJson(reader, KripkeStr.class);
-            System.out.println("++++++");
-            k.setSrcDestState();
-            System.out.println(k);
-        } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-
-
         // Création de la strucutre de Kripke
 
         Atomic a = new Atomic("a");
