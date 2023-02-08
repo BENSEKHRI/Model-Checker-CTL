@@ -17,7 +17,7 @@
         <dependency>
             <groupId>javacc</groupId>
             <artifactId>javacc</artifactId>
-            <version>5.0</version>
+            <version>4.1</version>
         </dependency>
 
         <dependency>

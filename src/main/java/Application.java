@@ -3,58 +3,29 @@ import CTL_formula.CTL_Formula;
 import Kripke_structure.Arc;
 import Kripke_structure.KripkeStr;
 import Kripke_structure.State;
+import com.google.gson.GsonBuilder;
 import javaCC.ParseException;
 import javaCC.Parser;
 import javaCC.TokenMgrError;
 
-import java.io.*;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, URISyntaxException {
 
-        Gson gson = new Gson();
+        KripkeStr k = Application.ReadJson(Path.of(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("Data.json")).toURI()));
 
-        System.out.println("Lecture du Data.json...");
-        try (FileReader reader = new FileReader(Path.of(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("Data.json")).toURI()).toFile())) {
-            System.out.println("Création de la strucutre de Kripke en cours...");
-            KripkeStr k =  gson.fromJson(reader, KripkeStr.class);
-            System.out.println("++++++");
-            k.setSrcDestState();
-            System.out.println(k);
-        } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println(k);
 
-
-        // Création de la strucutre de Kripke
-
-        Atomic a = new Atomic("a");
-        Atomic b = new Atomic("b");
-
-        State s0 = new State(0, "s0", Set.of(a, b), true);
-        State s1 = new State(1, "s1", Set.of(a), false);
-        State s2 = new State(2, "s2", Set.of(b), false);
-        State s3 = new State(3, "s3", Set.of(a, b), false);
-
-        Arc a0 = new Arc(s0, s1);
-        Arc a1 = new Arc(s1, s2);
-        Arc a2 = new Arc(s2, s3);
-        Arc a3 = new Arc(s3, s0);
-        Arc a4 = new Arc(s0, s2);
-
-        KripkeStr k = new KripkeStr(List.of(s0, s1, s2, s3), List.of(a0, a1, a2, a3, a4));
-
-        k.setSrcDestState();
+        System.out.println("-----------------");
 
         Parser parser = new Parser(System.in);
 
@@ -86,5 +57,32 @@ public class Application {
                 return;
             }
         }
+    }
+
+    public static KripkeStr ReadJson(Path filename) throws IOException {
+        String json = Files.readString(filename);
+        final Gson gson = new GsonBuilder().create();
+        final JsonKripkeStr jsonKripkeStr = gson.fromJson(json, JsonKripkeStr.class);
+
+        List<Arc> arcs = jsonKripkeStr.arcs.stream().map(a -> new Arc(a.get(0), a.get(1))).toList();
+        List<State> states = jsonKripkeStr.states.stream().map(s -> new State(s.index, s.nom, s.labels.stream().map(Atomic::new).collect(Collectors.toSet()), s.isInitial)).toList();
+
+        KripkeStr kripkeStr = new KripkeStr(states, arcs);
+        kripkeStr.setSrcDestState();
+
+        return kripkeStr;
+    }
+
+
+    public static class JsonKripkeStr {
+        public ArrayList<JsonState> states;
+        public ArrayList<ArrayList<Integer>> arcs;
+    }
+
+    public static class JsonState {
+        public int index;
+        public String nom;
+        public boolean isInitial;
+        public ArrayList<String> labels = new ArrayList<>();
     }
 }

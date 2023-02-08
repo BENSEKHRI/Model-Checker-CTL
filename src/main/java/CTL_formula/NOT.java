@@ -13,7 +13,7 @@ public class NOT extends OneArg {
 
     @Override
     public String toString() {
-        return "(~ " + super.getF() + ")";
+        return "~ (" + super.getF() + ")";
     }
 
     @Override

@@ -3,44 +3,45 @@ package Kripke_structure;
 import java.util.Objects;
 
 public class Arc {
-    private State src;
-    private State dest;
+    private int src;
+    private int dest;
 
-    public Arc(State src, State dest) {
+    public Arc(int src, int dest) {
         this.src = src;
         this.dest = dest;
     }
 
-    public State getSrc() {
+    public int getSrc() {
         return src;
     }
 
-    public void setSrc(State src) {
+    public void setSrc(int src) {
         this.src = src;
     }
 
-    public State getDest() {
+    public int getDest() {
         return dest;
     }
 
-    public void setDest(State dest) {
+    public void setDest(int dest) {
         this.dest = dest;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Arc that)) return false;
-        return getSrc().equals(that.getSrc()) && getDest().equals(that.getDest());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSrc(), getDest());
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return src.getNom() + " --> " + dest.getNom();
+        return "Arc{" +
+                "src=" + src +
+                ", dest=" + dest +
+                '}';
     }
 }

@@ -13,7 +13,7 @@ public class AU extends TwoArg {
 
     @Override
     public String toString() {
-        return "(A " + super.getF1() + " U " + super.getF2();
+        return "A (" + super.getF1() + " U " + super.getF2() + ")";
     }
 
     @Override

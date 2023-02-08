@@ -13,7 +13,7 @@ public class EU extends TwoArg {
 
     @Override
     public String toString() {
-        return "(E " + super.getF1() + " U " + super.getF2();
+        return "E (" + super.getF1() + " U " + super.getF2() + ")";
     }
 
     @Override
@@ -33,7 +33,7 @@ public class EU extends TwoArg {
         List<State> LEU = new ArrayList<>();
 
         for (State s : k.getStates()) {
-            if (right.get(s.getIndex())) {
+            if (left.get(s.getIndex())) {
                 LEU.add(s);
                 seenBefore.set(s.getIndex(), true);
             }
@@ -48,7 +48,7 @@ public class EU extends TwoArg {
                 if (!seenBefore.get(p.getIndex())) {
                     seenBefore.set(p.getIndex(), true);
                 }
-                if (left.get(p.getIndex())) {
+                if (right.get(p.getIndex())) {
                     LEU.add(p);
                 }
             }

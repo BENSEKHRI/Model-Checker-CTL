@@ -13,7 +13,7 @@ public class EX extends OneArg {
 
     @Override
     public String toString() {
-        return "(E X " + super.getF() + ")";
+        return "E X (" + super.getF() + ")";
     }
 
     @Override
