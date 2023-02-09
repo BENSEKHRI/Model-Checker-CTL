@@ -5,7 +5,8 @@ import CTL_formula.Atomic;
 import java.util.*;
 
 public class State {
-    private Integer index;
+    private static int indexNext = 0;
+    private int index;
     private String nom;
     private Set<Atomic> labels;
     private boolean isInitial;
@@ -16,18 +17,18 @@ public class State {
     public State() {
     }
 
-    public State(Integer index, String nom, Set<Atomic> labels, boolean isInitial) {
-        this.index = index;
+    public State(String nom, Set<Atomic> labels, boolean isInitial) {
+        this.index = indexNext++;
         this.nom = nom;
         this.labels = labels;
         this.isInitial = isInitial;
     }
 
-    public Integer getIndex() {
+    public int getIndex() {
         return index;
     }
 
-    public void setIndex(Integer index) {
+    public void setIndex(int index) {
         this.index = index;
     }
 
@@ -75,12 +76,12 @@ public class State {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof State state)) return false;
-        return getIndex().equals(state.getIndex()) && getNom().equals(state.getNom()) && getLabels().equals(state.getLabels()) && Objects.equals(getSuccessors(), state.getSuccessors()) && Objects.equals(getPredecessors(), state.getPredecessors());
+        return getIndex() == state.getIndex() && isInitial() == state.isInitial() && getNom().equals(state.getNom()) && getLabels().equals(state.getLabels()) && getSuccessors().equals(state.getSuccessors()) && getPredecessors().equals(state.getPredecessors());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIndex(), getNom(), getLabels(), getSuccessors(), getPredecessors());
+        return Objects.hash(getIndex(), getNom(), getLabels(), isInitial(), getSuccessors(), getPredecessors());
     }
 
     @Override

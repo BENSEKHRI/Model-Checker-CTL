@@ -1,7 +1,6 @@
 {
   "states": [
     {
-      "index": 0,
       "nom": "s1",
       "labels": [
         "a",
@@ -10,7 +9,6 @@
       "isInitial": false
     },
     {
-      "index": 1,
       "nom": "s2",
       "labels": [
         "a"
@@ -18,7 +16,6 @@
       "isInitial": false
     },
     {
-      "index": 2,
       "nom": "s3",
       "labels": [
         "b"
@@ -26,7 +23,6 @@
       "isInitial": false
     },
     {
-      "index": 3,
       "nom": "s4",
       "labels": [
         "a",
