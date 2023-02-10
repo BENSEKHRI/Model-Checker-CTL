@@ -21,11 +21,7 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) throws IOException, URISyntaxException {
 
-        KripkeStr k = Application.ReadJson(Path.of(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("KS.json")).toURI()));
-
-        System.out.println(k);
-
-        System.out.println("-----------------");
+        KripkeStr k = new KripkeStr();
 
         Parser parser = new Parser(System.in);
 
@@ -59,29 +55,5 @@ public class Application {
         }
     }
 
-    public static KripkeStr ReadJson(Path filename) throws IOException {
-        String json = Files.readString(filename);
-        final Gson gson = new GsonBuilder().create();
-        final JsonKripkeStr jsonKripkeStr = gson.fromJson(json, JsonKripkeStr.class);
 
-        List<Arc> arcs = jsonKripkeStr.arcs.stream().map(a -> new Arc(a.get(0), a.get(1))).toList();
-        List<State> states = jsonKripkeStr.states.stream().map(s -> new State(s.nom, s.labels.stream().map(Atomic::new).collect(Collectors.toSet()), s.isInitial)).toList();
-
-        KripkeStr kripkeStr = new KripkeStr(states, arcs);
-        kripkeStr.setSrcDestState();
-
-        return kripkeStr;
-    }
-
-
-    public static class JsonKripkeStr {
-        public ArrayList<JsonState> states;
-        public ArrayList<ArrayList<Integer>> arcs;
-    }
-
-    public static class JsonState {
-        public String nom;
-        public boolean isInitial;
-        public ArrayList<String> labels = new ArrayList<>();
-    }
 }

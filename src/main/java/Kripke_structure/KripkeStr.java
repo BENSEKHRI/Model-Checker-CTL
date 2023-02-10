@@ -7,6 +7,11 @@ public class KripkeStr {
     private List<State> states;
     private List<Arc> arcs;
 
+    public KripkeStr() {
+        this.states = new ArrayList<>();
+        this.arcs = new ArrayList<>();
+    }
+
     public KripkeStr(List<State> states, List<Arc> arcs) {
         this.states = states;
         this.arcs = arcs;
