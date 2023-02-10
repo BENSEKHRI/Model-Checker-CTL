@@ -79,5 +79,4 @@ CTL_Formula term () :
     | "TRUE"                  { return new Atomic("TRUE"); }
     | "FALSE"                 { return new NOT (new Atomic("TRUE")); }
     | t=<LABEL>               { return new Atomic(t.image); }
-    | "EXIT"                  { return new Atomic("EXIT"); }
 }

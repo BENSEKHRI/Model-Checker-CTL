@@ -30,7 +30,6 @@ public class Parser implements ParserConstants {
     case 19:
     case 20:
     case 21:
-    case 22:
       f1 = proposition();
                               {if (true) return f1;}
       break;
@@ -158,10 +157,6 @@ public class Parser implements ParserConstants {
       t = jj_consume_token(LABEL);
                                 {if (true) return new Atomic(t.image);}
       break;
-    case 22:
-      jj_consume_token(22);
-                                {if (true) return new Atomic("EXIT");}
-      break;
     default:
       jj_la1[3] = jj_gen;
       jj_consume_token(-1);
@@ -186,7 +181,7 @@ public class Parser implements ParserConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x789fe8,0x70000,0x70000,0x781008,};
+      jj_la1_0 = new int[] {0x389fe8,0x70000,0x70000,0x381008,};
    }
 
   /** Constructor with InputStream. */
@@ -324,7 +319,7 @@ public class Parser implements ParserConstants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[23];
+    boolean[] la1tokens = new boolean[22];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -338,7 +333,7 @@ public class Parser implements ParserConstants {
         }
       }
     }
-    for (int i = 0; i < 23; i++) {
+    for (int i = 0; i < 22; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
