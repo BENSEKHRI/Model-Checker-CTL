@@ -3,9 +3,7 @@ package CTL_formula;
 import Kripke_structure.KripkeStr;
 import Kripke_structure.State;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Atomic extends CTL_Formula {
     private String label;
@@ -44,9 +42,7 @@ public class Atomic extends CTL_Formula {
         List<Boolean> res = new ArrayList<>();
 
         if (this.label.equals("TRUE")) {
-            for (State s : k.getStates()) {
-                res.add(true);
-            }
+            res = Collections.nCopies(k.getStates().size(), true);
         } else {
             for (State s : k.getStates()) {
                 res.add(s.getLabels().contains(this));
@@ -55,9 +51,4 @@ public class Atomic extends CTL_Formula {
 
         return res;
     }
-
-    public boolean exit() {
-        return this.label.equals("EXIT");
-    }
-
 }

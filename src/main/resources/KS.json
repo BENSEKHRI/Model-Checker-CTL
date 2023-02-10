@@ -1,0 +1,117 @@
+{
+  "states": [
+    {
+      "nom": "1",
+      "labels": [
+        "q"
+      ],
+      "isInitial": false
+    },
+    {
+      "nom": "2",
+      "labels": [
+        "p",
+        "q"
+      ],
+      "isInitial": false
+    },
+    {
+      "nom": "3",
+      "labels": [
+        "q"
+      ],
+      "isInitial": false
+    },
+    {
+      "nom": "4",
+      "labels": [
+        "r"
+      ],
+      "isInitial": false
+    },
+    {
+      "nom": "5",
+      "labels": [
+        "p",
+        "r"
+      ],
+      "isInitial": false
+    },
+    {
+      "nom": "6",
+      "labels": [
+        "p",
+        "r"
+      ],
+      "isInitial": false
+    },
+    {
+      "nom": "7",
+      "labels": [
+        "p",
+        "q"
+      ],
+      "isInitial": false
+    },
+    {
+      "nom": 8,
+      "labels": [
+      ],
+      "isInitial": false
+    }
+  ],
+  "arcs": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      4,
+      0
+    ],
+    [
+      4,
+      4
+    ],
+    [
+      5,
+      4
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      7,
+      3
+    ]
+  ]
+}

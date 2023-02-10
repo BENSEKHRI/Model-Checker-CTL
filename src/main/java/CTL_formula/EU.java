@@ -4,6 +4,7 @@ import Kripke_structure.KripkeStr;
 import Kripke_structure.State;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EU extends TwoArg {
@@ -33,7 +34,7 @@ public class EU extends TwoArg {
         List<State> LEU = new ArrayList<>();
 
         for (State s : k.getStates()) {
-            if (left.get(s.getIndex())) {
+            if (right.get(s.getIndex())) {
                 LEU.add(s);
                 seenBefore.set(s.getIndex(), true);
             }
@@ -47,10 +48,12 @@ public class EU extends TwoArg {
             for (State p : q.getPredecessors()) {
                 if (!seenBefore.get(p.getIndex())) {
                     seenBefore.set(p.getIndex(), true);
+
+                    if (left.get(p.getIndex())) {
+                        LEU.add(p);
+                    }
                 }
-                if (right.get(p.getIndex())) {
-                    LEU.add(p);
-                }
+
             }
         }
 
