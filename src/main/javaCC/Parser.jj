@@ -1,0 +1,82 @@
+/**
+*  Parser.jj
+*
+* La classe Parser est responsable de l'analyse syntaxique d'une chaîne d'entrée donnée et du retour
+* d'une formule CTL.
+*/
+PARSER_BEGIN(Parser)
+
+import CTL_formula.*;
+
+public class Parser {
+    public static void main(String[] args) {
+        try {
+            Parser parseur = new Parser(System.in);
+            parseur.mainNT();
+            System.out.println("CTL formula accepted !");
+        } catch (TokenMgrError e) {
+            System.out.println("Error - The label must be in miniscule !");
+        } catch (ParseException e) {
+            System.out.println("Error - This is not a CTL formula !");
+        }
+    }
+}
+PARSER_END(Parser)
+
+SKIP :
+{ " " | "\t" }
+
+TOKEN :
+{
+      < LABEL: ["a"-"z"] (["a"-"z"])* (["0"-"9"])* >
+    | < EOL: "\n" >
+}
+
+CTL_Formula mainNT () :
+{
+    CTL_Formula f;
+}
+{
+      f=ctl () <EOL> { return f; }
+}
+
+CTL_Formula ctl () :
+{
+    CTL_Formula f1, f2;
+}
+{
+      f1=proposition()      { return f1; }
+    | "EX" f1=proposition() { return new EX(f1); }
+    | "AX" f1=proposition() { return new NOT(new EX(new NOT(f1))); }
+    | "EF" f1=proposition() { return new EU(new Atomic("TRUE"), f1); }
+    | "AF" f1=proposition() { return new AU(new Atomic("TRUE"), f1); }
+    | "EG" f1=proposition() { return new NOT(new AU(new Atomic("TRUE"), f1)); }
+    | "AG" f1=proposition() { return new NOT(new EU(new Atomic("TRUE"), f1)); }
+    | "E" "(" f1=proposition() "U" f2=proposition() ")" { return new EU(f1, f2); }
+    | "A" "(" f1=proposition() "U" f2=proposition() ")" { return new AU(f1, f2); }
+}
+
+CTL_Formula proposition () :
+{
+    CTL_Formula f1, f2;
+}
+{
+    f1=term () (
+          "/\\" f2=term()   { return new AND(f1, f2); }
+        | "\\/" f2=term()   { return new NOT(new AND(new NOT(f1), new NOT(f2))); }
+        | "=>" f2=term()    { return new NOT(new AND(f1, new NOT(f2))); }
+    )* { return f1; }
+}
+
+CTL_Formula term () :
+{
+    CTL_Formula f;
+    Token t;
+}
+{
+      "(" f=ctl() ")"         { return f; }
+    | "~" f=term()            { return new NOT(f); }
+    | "TRUE"                  { return new Atomic("TRUE"); }
+    | "FALSE"                 { return new NOT (new Atomic("TRUE")); }
+    | t=<LABEL>               { return new Atomic(t.image); }
+}

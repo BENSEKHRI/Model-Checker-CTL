@@ -1,0 +1,168 @@
+{
+  "states": [
+    {
+      "name": "S1",
+      "labels": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "isInitial": true
+    },
+    {
+      "name": "S2",
+      "labels": [
+        "b"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S3",
+      "labels": [
+        "c",
+        "e"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S4",
+      "labels": [
+        "d"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S5",
+      "labels": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S6",
+      "labels": [
+        "a"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S7",
+      "labels": [
+        "c",
+        "d"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S8",
+      "labels": [
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S9",
+      "labels": [
+        "b",
+        "d",
+        "e"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S10",
+      "labels": [
+        "a",
+        "c"
+      ],
+      "isInitial": false
+    }
+  ],
+  "arcs": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      7
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      7
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      9
+    ],
+    [
+      4,
+      8
+    ],
+    [
+      5,
+      2
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      6,
+      6
+    ],
+    [
+      6,
+      9
+    ],
+    [
+      7,
+      1
+    ],
+    [
+      7,
+      4
+    ],
+    [
+      8,
+      2
+    ],
+    [
+      8,
+      5
+    ],
+    [
+      8,
+      7
+    ],
+    [
+      9,
+      1
+    ],
+    [
+      9,
+      4
+    ]
+  ]
+}
