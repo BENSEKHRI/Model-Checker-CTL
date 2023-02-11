@@ -1,0 +1,48 @@
+{
+  "states": [
+    {
+      "name": "S1",
+      "labels": [
+        "p",
+        "q"
+      ],
+      "isInitial": true
+    },
+    {
+      "name": "S2",
+      "labels": [
+        "q"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "S3",
+      "labels": [
+        "p"
+      ],
+      "isInitial": false
+    }
+  ],
+  "arcs": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      2
+    ]
+  ]
+}
