@@ -4,7 +4,6 @@ import Kripke_structure.KripkeStr;
 import Kripke_structure.State;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class EU extends TwoArg {

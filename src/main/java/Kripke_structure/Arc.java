@@ -2,6 +2,10 @@ package Kripke_structure;
 
 import java.util.Objects;
 
+/**
+ * Class representing an Arc in a Kripke structure.
+ * Each arc has a source state and a destination state.
+ */
 public class Arc {
     private int src;
     private int dest;
@@ -28,20 +32,19 @@ public class Arc {
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Arc arc)) return false;
+        return getSrc() == arc.getSrc() && getDest() == arc.getDest();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public int hashCode() {
+        return Objects.hash(getSrc(), getDest());
     }
 
     @Override
     public String toString() {
-        return "Arc{" +
-                "src=" + src +
-                ", dest=" + dest +
-                '}';
+        return "|" + src + " -> " + dest + "|";
     }
 }

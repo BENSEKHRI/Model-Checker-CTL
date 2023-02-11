@@ -45,9 +45,9 @@ public class AU extends TwoArg {
 
             for (State p : q.getPredecessors()) {
 
-                degree.set(p.getIndex(), degree.get(p.getIndex())-1);
+                degree.set(p.getIndex(), degree.get(p.getIndex()) - 1);
 
-                if ( (degree.get(p.getIndex()) == 0) && (left.get(p.getIndex())) && (!res.get(p.getIndex())) ) {
+                if ((degree.get(p.getIndex()) == 0) && (left.get(p.getIndex())) && (!res.get(p.getIndex()))) {
                     LAU.add(p);
                 }
             }
@@ -55,5 +55,4 @@ public class AU extends TwoArg {
 
         return res;
     }
-
 }

@@ -1,14 +1,14 @@
 {
   "states": [
     {
-      "nom": "1",
+      "name": "1",
       "labels": [
         "q"
       ],
-      "isInitial": false
+      "isInitial": true
     },
     {
-      "nom": "2",
+      "name": "2",
       "labels": [
         "p",
         "q"
@@ -16,29 +16,21 @@
       "isInitial": false
     },
     {
-      "nom": "3",
+      "name": "3",
       "labels": [
         "q"
       ],
       "isInitial": false
     },
     {
-      "nom": "4",
+      "name": "4",
       "labels": [
         "r"
       ],
       "isInitial": false
     },
     {
-      "nom": "5",
-      "labels": [
-        "p",
-        "r"
-      ],
-      "isInitial": false
-    },
-    {
-      "nom": "6",
+      "name": "5",
       "labels": [
         "p",
         "r"
@@ -46,7 +38,15 @@
       "isInitial": false
     },
     {
-      "nom": "7",
+      "name": "6",
+      "labels": [
+        "p",
+        "r"
+      ],
+      "isInitial": false
+    },
+    {
+      "name": "7",
       "labels": [
         "p",
         "q"
@@ -54,7 +54,7 @@
       "isInitial": false
     },
     {
-      "nom": 8,
+      "name": 8,
       "labels": [
       ],
       "isInitial": false

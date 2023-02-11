@@ -4,24 +4,28 @@ import CTL_formula.Atomic;
 
 import java.util.*;
 
+/**
+ * Class representing a State in a Kripke structure.
+ * Each state has a unique identifier, a set of atomic propositions, and a flag indicating whether it is the initial state.
+ */
 public class State {
     private static int indexNext = 0;
     private int index;
-    private String nom;
+    private String name;
     private Set<Atomic> labels;
     private boolean isInitial;
-    private List<State> successors = new ArrayList<State>();
-    private List<State> predecessors = new ArrayList<State>();
+    private List<State> successors = new ArrayList<>();
+    private List<State> predecessors = new ArrayList<>();
 
-
-    public State() {
-    }
-
-    public State(String nom, Set<Atomic> labels, boolean isInitial) {
+    public State(String name, Set<Atomic> labels, boolean isInitial) {
         this.index = indexNext++;
-        this.nom = nom;
+        this.name = name;
         this.labels = labels;
         this.isInitial = isInitial;
+    }
+
+    public static void resetIndex() {
+        indexNext = 0;
     }
 
     public int getIndex() {
@@ -32,12 +36,12 @@ public class State {
         this.index = index;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Atomic> getLabels() {
@@ -76,16 +80,29 @@ public class State {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof State state)) return false;
-        return getIndex() == state.getIndex() && isInitial() == state.isInitial() && getNom().equals(state.getNom()) && getLabels().equals(state.getLabels()) && getSuccessors().equals(state.getSuccessors()) && getPredecessors().equals(state.getPredecessors());
+        return getIndex() == state.getIndex() && isInitial() == state.isInitial() && getName().equals(state.getName()) && getLabels().equals(state.getLabels()) && getSuccessors().equals(state.getSuccessors()) && getPredecessors().equals(state.getPredecessors());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIndex(), getNom(), getLabels(), isInitial(), getSuccessors(), getPredecessors());
+        return Objects.hash(getIndex(), getName(), getLabels(), isInitial(), getSuccessors(), getPredecessors());
     }
 
     @Override
     public String toString() {
-        return nom;
+        return name;
+    }
+
+    public String printState() {
+        if (isInitial) {
+            return "\033[35m{ " + index +
+                    ", |" + name + '|' +
+                    ", " + labels +
+                    ", \033[33m[Initial]\033[0m }, \033[0m";
+        } else {
+            return "\033[35m{ " + index +
+                    ", |" + name + '|' +
+                    ", " + labels + " }, \033[0m";
+        }
     }
 }
