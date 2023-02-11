@@ -69,14 +69,17 @@ arrêter le programme, et cela, en chargeant directement votre fichier JSON cont
 Sachez toutefois que le fichier JSON doit être bien syntaxé et doit être présent dans le dossier src/main/resources
 faute de quoi le programme s'arrête avec une erreur.
 
-Pour avoir une vue image sur votre structure de kripke n'hésitez pas à l'afficher via le Menu Formules CTL et ainsi vous
-aurez un aperçu PNG de celle-ci.
+Pour avoir une vue image sur votre structure de kripke n'hésitez pas à l'afficher via le Menu SK et ainsi vous
+aurez un aperçu PNG de celle-ci comme l'exemple que vous pouvez trouver dans src/main/resources/images/KS_example.png
+qui a été généré avec le programme.
 
 Vous pouvez tester autant de formules que vous souhaitez, à chaque fois que cela se fait vous aurez un aperçu d'une
 formule équivalente et ensuite l'ensemble des états qui la satisfont (On affiche les noms des états).
 
 Toutes les étapes sont expliquées dans les notices de chaque Menu, si vous rencontrez des difficultés n'hésitez pas à
 les lire.
+
+Nous avons préparé 03 structures de Kripke que vous pouvez trouver dans resources pour tester le programme. 
 
 Sur ce, amusez-vous bien !
 
