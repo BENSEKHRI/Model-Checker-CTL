@@ -60,6 +60,10 @@ utilisant un fichier JSON. Vous pouvez ensuite spécifier les propriétés à v�
 vous taperez directement sur la console. Le programme effectuera ensuite un marquage des états qui satisfont les
 propriétés spécifiées et affichera les résultats de marquage.
 
+Pour remplir le fichier JSON de la structure de Kripke, sachez que les index des états sont incrémentés automatiquement
+et commence à 0. Donc dans la partie des arcs, pour relier votre premier état avec le second (en sachant que l'ordre des
+états est celui sur vous déclarer dans le JSON : le premier est celui qui est tous en haut), il faut écrire [0, 1].
+
 Si vous voulez tester une autre structure de Kripke pendant l'exécution de l'application, vous pouvez le faire sans
 arrêter le programme, et cela, en chargeant directement votre fichier JSON contenant la nouvelle SK via le Menu SK.
 Sachez toutefois que le fichier JSON doit être bien syntaxé et doit être présent dans le dossier src/main/resources
